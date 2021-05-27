@@ -1,12 +1,12 @@
 //IMPORTS
 import { gsap } from "gsap";
-import { GSDevTools } from "gsap/GSDevTools";
-import {MotionPathPlugin} from "gsap/MotionPathPlugin";
-import {CustomEase} from "gsap/CustomEase";
-import {CustomWiggle} from "gsap/CustomWiggle";
+// import { GSDevTools } from "gsap/GSDevTools";
+// import {MotionPathPlugin} from "gsap/MotionPathPlugin";
+// import {CustomEase} from "gsap/CustomEase";
+// import {CustomWiggle} from "gsap/CustomWiggle";
 
 //register Plugins
-gsap.registerPlugin(GSDevTools, MotionPathPlugin, CustomEase, CustomWiggle);
+//gsap.registerPlugin(GSDevTools, MotionPathPlugin, CustomEase, CustomWiggle);
 
 //**** SELECT ELEMENTS without jQuery ****\\
 
@@ -35,42 +35,42 @@ ready(() => {
   /* add your code here */
   //Variables
   let mainTL = gsap.timeline({id:"main"});
-  let flamesTL = gsap.timeline({paused:true});
+  
 
 
   function init(){
 
-      CustomWiggle.create("myWiggle", {wiggles: 50, type:"uniform"});
-    //***********  fadeInTL init ****************
-    //gsap.set("#moon", {alpha:0});
-      //gsap.set("#svg-container", {backgroundColor:"#333"});
-      gsap.set("#moon", {x:-100});
-    //  gsap.set("#moon", { y:"+=200", delay:2});
+    //   CustomWiggle.create("myWiggle", {wiggles: 50, type:"uniform"});
+    // //***********  fadeInTL init ****************
+    // //gsap.set("#moon", {alpha:0});
+    //   //gsap.set("#svg-container", {backgroundColor:"#333"});
+    //   gsap.set("#moon", {x:-100});
+    // //  gsap.set("#moon", { y:"+=200", delay:2});
 
-      gsap.to("#moon", {duration:0.5, x:"+=15", ease:"myWiggle"});
-
-
+    //   gsap.to("#moon", {duration:0.5, x:"+=15", ease:"myWiggle"});
 
 
 
-      //****** transformOrigin VS. svgOrigin  *****\\
-      // gsap.to("#moon", {duration:5, rotation:360, transformOrigin:"50% 50%"});
-      //gsap.to("#moon", {duration:5, rotation:360, svgOrigin:"512 512"});
-    //*********** zoomTL init ****************
-    gsap.set(["#orange-mtn","#red-mtn","#front-mtns",".trees"], {transformOrigin:"center center"});
-    //*********** spaceshipTL init ****************
-    gsap.set(["#window",".engines"], {transformOrigin:"center center"});
-    gsap.set(".flames", {display:"none"});
-    gsap.set(".left-engines", {rotation:90});
-    gsap.set(".right-engines", {rotation:-90});
-    //*********** liftOffTL init ****************
-    gsap.set("#space-ship",{transformOrigin:"center"});
-    gsap.set(["#smoke-1","#smoke-2"],{transformOrigin:"center bottom"});
-    gsap.set(".smoke",{display:"none"});
 
-    //*********** flightTL init ****************
-    // gsap.set("#space-ship", {xPercent:-50, yPercent:-50, transformOrigin:"50% 50%"});
-    //*********** moonLandingTL init ****************
+
+    //   //****** transformOrigin VS. svgOrigin  *****\\
+    //   // gsap.to("#moon", {duration:5, rotation:360, transformOrigin:"50% 50%"});
+    //   //gsap.to("#moon", {duration:5, rotation:360, svgOrigin:"512 512"});
+    // //*********** zoomTL init ****************
+    // gsap.set(["#orange-mtn","#red-mtn","#front-mtns",".trees"], {transformOrigin:"center center"});
+    // //*********** spaceshipTL init ****************
+    // gsap.set(["#window",".engines"], {transformOrigin:"center center"});
+    // gsap.set(".flames", {display:"none"});
+    // gsap.set(".left-engines", {rotation:90});
+    // gsap.set(".right-engines", {rotation:-90});
+    // //*********** liftOffTL init ****************
+    // gsap.set("#space-ship",{transformOrigin:"center"});
+    // gsap.set(["#smoke-1","#smoke-2"],{transformOrigin:"center bottom"});
+    // gsap.set(".smoke",{display:"none"});
+
+    // //*********** flightTL init ****************
+    // // gsap.set("#space-ship", {xPercent:-50, yPercent:-50, transformOrigin:"50% 50%"});
+    // //*********** moonLandingTL init ****************
 
 
   }
@@ -80,10 +80,10 @@ ready(() => {
   function fadeInTL(){
     let tl = gsap.timeline();
 
-    tl.from("#background-fill", {alpha:0, duration:4, scale:20})
-    .from("#clouds g", {alpha:0, stagger:1, duration:2}, "-=3")
+    // tl.from("#background-fill", {alpha:0, duration:4, scale:20})
+    // .from("#clouds g", {alpha:0, stagger:1, duration:2}, "-=3")
 
-    ;//tl END
+    //;//tl END
 
     return tl;
 
@@ -232,10 +232,7 @@ gsap.set('#svg-container',{visibility:"visible"});
 
 //3. BUILD Main timeline
 mainTL.add(fadeInTL())
-.add(zoomTL(),"-=4")
-.add(spaceshipTL(),"-=6")
-.add(liftOffTL())
-.add(flightTL(),"target")
+
 
 ;//tl END
 

@@ -54,6 +54,16 @@
 		"sC": 3,
 		"tS": 0
 		},
+	"/design/lauren-motion1-finaldesign-01.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/design/lauren-motion1-finaldesign-01.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 52780316221407,
+		"prP": 0
+		},
 	"/design/lauren-motion1-finaldesign.ai": {
 		"cB": 0,
 		"ft": 8192,
@@ -74,7 +84,7 @@
 		"cB": 0,
 		"ft": 2048,
 		"hM": 0,
-		"oA": 1,
+		"oA": 0,
 		"oAP": "/dev/content/svg/background.html",
 		"oF": 0
 		},
@@ -82,7 +92,7 @@
 		"cB": 0,
 		"ft": 2048,
 		"hM": 0,
-		"oA": 1,
+		"oA": 0,
 		"oAP": "/dev/content/svg/foreground.html",
 		"oF": 0
 		},
@@ -90,7 +100,7 @@
 		"cB": 0,
 		"ft": 2048,
 		"hM": 0,
-		"oA": 1,
+		"oA": 0,
 		"oAP": "/dev/content/svg/moon.html",
 		"oF": 0
 		},
