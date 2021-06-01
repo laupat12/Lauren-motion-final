@@ -40,6 +40,19 @@ ready(() => {
 
   function init(){
 
+    //INTRO
+    gsap.set("#main-logo", {scale:2.5, transformOrigin:"50% 50%" });
+    gsap.set("#logo", {transformOrigin:"50% 50%" });
+
+    //START
+    gsap.set("#speedometer", {scale:1, transformOrigin:"50% 50%"});
+    gsap.set("#fuel-ind", {scale:1, transformOrigin:"50% 50%"});
+    gsap.set("#Temp", {scale:1, transformOrigin:"50% 50%"});
+    gsap.set("#music-section", {scale:1, transformOrigin:"50% 50%"});
+    gsap.set("#map-outine", {scale:1, transformOrigin:"50% 50%"});
+   
+   
+
     //   CustomWiggle.create("myWiggle", {wiggles: 50, type:"uniform"});
     // //***********  fadeInTL init ****************
     // //gsap.set("#moon", {alpha:0});
@@ -80,27 +93,50 @@ ready(() => {
   function fadeInTL(){
     let tl = gsap.timeline();
 
-    // tl.from("#background-fill", {alpha:0, duration:4, scale:20})
-    // .from("#clouds g", {alpha:0, stagger:1, duration:2}, "-=3")
+    tl.from("#logo", {duration:1, scale:5, ease: "expo"}, "logo")
+    .from("#MERCEDES-BENZ", {alpha:0, y:"-=25", duration:0.5, ease: "back"})
+    .from("#logo", {alpha:0, duration:5, ease: "expo"}, "logo")
 
-    //;//tl END
+    ;//tl END
 
     return tl;
 
   }
 
-  //*********** zoomTL ****************
-  function zoomTL(){
+  //*********** startTL ****************
+  function startTL(){
     let tl = gsap.timeline();
+    tl.to("#black-rec", {alpha:0, duration:0.5}, "down")
+    .to("#main-logo", {scale:1, duration:0.5, ease:"back"}, "down")
+    .from("#speedometer", {duration:0.5, scale:2.5, ease: "back.out"}, "speed")
+    .from("#speedometer", {alpha:0, duration:0.5, ease: "expo"}, "speed")
+    //.from make numbers jump to 50 and then to 0
+    .from("#fuel-ind", {duration:0.5, scale:2.5, ease: "expo"}, "fuel")
+    .from("#fuel-ind", {alpha:0, duration:0.5, ease: "expo"}, "fuel")
+    //.from make fuel line bounce
+    .from("#Temp", {duration:0.5, scale:2.5, ease: "expo"}, "temp")
+    .from("#Temp", {alpha:0, duration:0.5, ease: "expo"}, "temp")
+    .from("#music-section", {duration:0.5, scale:2.5, ease: "expo"}, "music")
+    .from("#music-section", {alpha:0, duration:0.5, ease: "expo"}, "music")
+    .from("#map-outline", {duration:0.5, scale:2.5, ease: "expo"}, "map")
+    .from("#map-outline", {alpha:0, duration:0.5, ease: "expo"}, "map")
+    .from("#blinkerL", {alpha:0, duration:0.3, ease: "bounce.out"})
+    .from("#P", {alpha:0, duration:0.3, ease: "bounce.out"})
+    .from("#R", {alpha:0, duration:0.3, ease: "bounce.out"})
+    .from("#N", {alpha:0, duration:0.3, ease: "bounce.out"})
+    .from("#D", {alpha:0, duration:0.3, ease: "bounce.out"})
+    .from("#blinkerR", {alpha:0, duration:0.3, ease: "bounce.out"})
 
-    tl.from("#orange-mtn", {duration:6, scale:10, y:"+=1500", ease:"power4.out"}, "zoom")
-    .from("#red-mtn", {duration:5.75, scale:10, y:"+=800", ease:"power4.out", tranformOrigin:"50% 50%"}, "zoom")
-    .from("#front-mtns", {duration:5.5, scale:10, y:"+=600", ease:"power4.out"}, "zoom")
-    .from("#trees-5", {duration:5.5, scale:10, y:"+=420", ease:"power4.out"}, "zoom")
-    .from("#trees-4", {duration:5.5, scale:10, y:"+=420", ease:"power4.out"}, "zoom")
-    .from("#trees-3", {duration:5.25, scale:10, y:"+=420", ease:"power4.out", onStart:callBackTest}, "zoom")
-    .from("#trees-2", {duration:5, scale:10, y:"+=420", ease:"power4.out"}, "zoom")
-    .from("#trees-1", {duration:4.75, scale:10, y:"+=400", ease:"power4.out"}, "zoom")
+    //add alpha to black and scale down logo
+
+    // tl.from("#orange-mtn", {duration:6, scale:10, y:"+=1500", ease:"power4.out"}, "zoom")
+    // .from("#red-mtn", {duration:5.75, scale:10, y:"+=800", ease:"power4.out", tranformOrigin:"50% 50%"}, "zoom")
+    // .from("#front-mtns", {duration:5.5, scale:10, y:"+=600", ease:"power4.out"}, "zoom")
+    // .from("#trees-5", {duration:5.5, scale:10, y:"+=420", ease:"power4.out"}, "zoom")
+    // .from("#trees-4", {duration:5.5, scale:10, y:"+=420", ease:"power4.out"}, "zoom")
+    // .from("#trees-3", {duration:5.25, scale:10, y:"+=420", ease:"power4.out", onStart:callBackTest}, "zoom")
+    // .from("#trees-2", {duration:5, scale:10, y:"+=420", ease:"power4.out"}, "zoom")
+    // .from("#trees-1", {duration:4.75, scale:10, y:"+=400", ease:"power4.out"}, "zoom")
 
     ;//tl END
 
@@ -232,6 +268,7 @@ gsap.set('#svg-container',{visibility:"visible"});
 
 //3. BUILD Main timeline
 mainTL.add(fadeInTL())
+.add(startTL(),"-=2")
 
 
 ;//tl END
