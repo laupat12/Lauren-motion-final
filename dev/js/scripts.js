@@ -1,12 +1,12 @@
 //IMPORTS
 import { gsap } from "gsap";
-// import { GSDevTools } from "gsap/GSDevTools";
-// import {MotionPathPlugin} from "gsap/MotionPathPlugin";
+import { GSDevTools } from "gsap/GSDevTools";
+import {MotionPathPlugin} from "gsap/MotionPathPlugin";
 // import {CustomEase} from "gsap/CustomEase";
 // import {CustomWiggle} from "gsap/CustomWiggle";
 
 //register Plugins
-//gsap.registerPlugin(GSDevTools, MotionPathPlugin, CustomEase, CustomWiggle);
+gsap.registerPlugin(GSDevTools, MotionPathPlugin);
 
 //**** SELECT ELEMENTS without jQuery ****\\
 
@@ -35,6 +35,8 @@ ready(() => {
   /* add your code here */
   //Variables
   let mainTL = gsap.timeline({id:"main"});
+  //let PERC = {num:0};
+  //let PREC_num = document.querySelector("# tspan")
   
 
 
@@ -50,6 +52,12 @@ ready(() => {
     gsap.set("#Temp", {scale:1, transformOrigin:"50% 50%"});
     gsap.set("#music-section", {scale:1, transformOrigin:"50% 50%"});
     gsap.set("#map-outine", {scale:1, transformOrigin:"50% 50%"});
+    gsap.set("#gas-line", {scaleX:"left"})
+    gsap.set("#h", {scaleX:"left"})
+    gsap.set("#v", {scaleY:"left"})
+    gsap.set("#music-line", {scaleX:"left"})
+    gsap.set("#arrow-path", {scaleX:"left"})
+    gsap.set("#arrow", {scale:1, transformOrigin:"50% 50%"});
    
    
 
@@ -108,11 +116,12 @@ ready(() => {
     let tl = gsap.timeline();
     tl.to("#black-rec", {alpha:0, duration:0.5}, "down")
     .to("#main-logo", {scale:1, duration:0.5, ease:"back"}, "down")
-    .from("#speedometer", {duration:0.5, scale:2.5, ease: "back.out"}, "speed")
+    .from("#speedometer", {duration:0.5, scale:2.5, ease: "expo"}, "speed")
     .from("#speedometer", {alpha:0, duration:0.5, ease: "expo"}, "speed")
     //.from make numbers jump to 50 and then to 0
     .from("#fuel-ind", {duration:0.5, scale:2.5, ease: "expo"}, "fuel")
     .from("#fuel-ind", {alpha:0, duration:0.5, ease: "expo"}, "fuel")
+    .to("#gas-line", {scaleX:1, duration:1, ease:"expo"}, "fuel")
     //.from make fuel line bounce
     .from("#Temp", {duration:0.5, scale:2.5, ease: "expo"}, "temp")
     .from("#Temp", {alpha:0, duration:0.5, ease: "expo"}, "temp")
@@ -120,19 +129,29 @@ ready(() => {
     .from("#music-section", {alpha:0, duration:0.5, ease: "expo"}, "music")
     .from("#map-outline", {duration:0.5, scale:2.5, ease: "expo"}, "map")
     .from("#map-outline", {alpha:0, duration:0.5, ease: "expo"}, "map")
+    .to("#h", {scaleX:1, duration:1, ease:"expo"}, "map")
+    .to("#arrow-path", {scaleX:1, duration:1, ease:"expo"}, "map")
+    .to("#v", {scaleY:1, duration:1, ease:"expo"}, "map")
+    .to("#music-line", {scaleX:1, duration:0.2}) //figure out how to make line duration entire animation
     .from("#blinkerL", {alpha:0, duration:0.3, ease: "bounce.out"})
     .from("#P", {alpha:0, duration:0.3, ease: "bounce.out"})
     .from("#R", {alpha:0, duration:0.3, ease: "bounce.out"})
     .from("#N", {alpha:0, duration:0.3, ease: "bounce.out"})
     .from("#D", {alpha:0, duration:0.3, ease: "bounce.out"})
     .from("#blinkerR", {alpha:0, duration:0.3, ease: "bounce.out"})
+    .from("#arrow", {duration:0.5, scale:2.5, ease: "expo"}, "arrow")
+    .from("#arrow", {alpha:0, duration:0.5, ease: "expo"}, "arrow")
+    .to("#blinkerL", {alpha:0, duration:1, ease: "bounce.out"})
+    
+
+    
 
     //add alpha to black and scale down logo
 
     // tl.from("#orange-mtn", {duration:6, scale:10, y:"+=1500", ease:"power4.out"}, "zoom")
     // .from("#red-mtn", {duration:5.75, scale:10, y:"+=800", ease:"power4.out", tranformOrigin:"50% 50%"}, "zoom")
     // .from("#front-mtns", {duration:5.5, scale:10, y:"+=600", ease:"power4.out"}, "zoom")
-    // .from("#trees-5", {duration:5.5, scale:10, y:"+=420", ease:"power4.out"}, "zoom")
+    // .from("#trees-5", {duration:5.5, scale:10, y:"+=420", ease:"power4.out"}, "zoom"
     // .from("#trees-4", {duration:5.5, scale:10, y:"+=420", ease:"power4.out"}, "zoom")
     // .from("#trees-3", {duration:5.25, scale:10, y:"+=420", ease:"power4.out", onStart:callBackTest}, "zoom")
     // .from("#trees-2", {duration:5, scale:10, y:"+=420", ease:"power4.out"}, "zoom")
@@ -144,35 +163,42 @@ ready(() => {
 
   }
 
-  //*********** spaceshipTL ****************
-  function spaceshipTL(){
+  //*********** mapTL ****************
+  function mapTL(){
     let tl = gsap.timeline();
 
-    tl.from("#space-ship",{y:"+=500", duration:0.5})
-    .from("#shadow",{alpha:0, duration:0.5})
-    .from("#cone",{alpha:0, duration:0.5})
-    .from("#window",{scale:0, duration:0.5})
-    .from("#window-bg",{alpha:0, duration:0.5})
-    .from("#window-glass",{alpha:0, duration:0.5})
-    .from("#window-bars",{alpha:0, duration:0.5})
+    tl.from("#arrow", {duration:4, motionPath:{path:"#path1", align:"self", autoRotate:90, start:-0.2, end:0}, ease:"none"}, "left")
+    //.from("#left-turn", {duration:0.5, scale:2.5, ease: "expo"})
+    .from("#left-turn", {alpha:0, duration:0.5, ease: "expo"}, "left")
+    .to("#left-turn", {alpha:0, duration:0.5, ease: "expo"})
+    .from("#arrow", {duration:2, motionPath:{path:"#path2", align:"#path2", autoRotate:90, start:0.4, end:0}, ease:"none"})
+    .from("#arrived", {alpha:0, duration:0.5, ease: "expo"})
 
-    .from("#eng-middle-left",{alpha:0, duration:0.25},"mid-eng-1")
-    //.from("#left-mid-bone",{scale:0, duration:0.25},"mid-eng-2")
-    .to("#eng-middle-left",{rotation:0, duration:0.25},"mid-eng-3")
-    .from("#eng-middle-right",{alpha:0, duration:0.25},"mid-eng-1")
-    //.from("#right-mid-bone",{scale:0, duration:0.25},"mid-eng-2")
-    .to("#eng-middle-right",{rotation:0, duration:0.25},"mid-eng-3")
+    // tl.from("#space-ship",{y:"+=500", duration:0.5})
+    // .from("#shadow",{alpha:0, duration:0.5})
+    // .from("#cone",{alpha:0, duration:0.5})
+    // .from("#window",{scale:0, duration:0.5})
+    // .from("#window-bg",{alpha:0, duration:0.5})
+    // .from("#window-glass",{alpha:0, duration:0.5})
+    // .from("#window-bars",{alpha:0, duration:0.5})
 
-    .from("#eng-left",{alpha:0, duration:0.25},"eng-1")
-    //.from("#left-bone",{scale:0, duration:0.25},"eng-2")
-    .to("#eng-left",{rotation:0, duration:0.25},"eng-3")
-    .from("#eng-right",{alpha:0, duration:0.25},"eng-1")
-    //.from("#right-bone",{scale:0, duration:0.25},"eng-2")
-    .to("#eng-right",{rotation:0, duration:0.25},"eng-3")
-    .from("#eng-left-bottom",{y:"-=20", duration:0.5})
-    .from("#eng-right-bottom",{y:"-=20", duration:0.5},"-=0.25")
-    .to("#space-ship",{y:"+=320", duration:2, ease: "bounce.out"},"shipBounce")
-    .set("#moon",{x:200},"shipBounce+=1")
+    // .from("#eng-middle-left",{alpha:0, duration:0.25},"mid-eng-1")
+    // //.from("#left-mid-bone",{scale:0, duration:0.25},"mid-eng-2")
+    // .to("#eng-middle-left",{rotation:0, duration:0.25},"mid-eng-3")
+    // .from("#eng-middle-right",{alpha:0, duration:0.25},"mid-eng-1")
+    // //.from("#right-mid-bone",{scale:0, duration:0.25},"mid-eng-2")
+    // .to("#eng-middle-right",{rotation:0, duration:0.25},"mid-eng-3")
+
+    // .from("#eng-left",{alpha:0, duration:0.25},"eng-1")
+    // //.from("#left-bone",{scale:0, duration:0.25},"eng-2")
+    // .to("#eng-left",{rotation:0, duration:0.25},"eng-3")
+    // .from("#eng-right",{alpha:0, duration:0.25},"eng-1")
+    // //.from("#right-bone",{scale:0, duration:0.25},"eng-2")
+    // .to("#eng-right",{rotation:0, duration:0.25},"eng-3")
+    // .from("#eng-left-bottom",{y:"-=20", duration:0.5})
+    // .from("#eng-right-bottom",{y:"-=20", duration:0.5},"-=0.25")
+    // .to("#space-ship",{y:"+=320", duration:2, ease: "bounce.out"},"shipBounce")
+    // .set("#moon",{x:200},"shipBounce+=1")
 
     ;//tl END
 
@@ -268,7 +294,8 @@ gsap.set('#svg-container',{visibility:"visible"});
 
 //3. BUILD Main timeline
 mainTL.add(fadeInTL())
-.add(startTL(),"-=2")
+.add(startTL(), "-=2")
+.add(mapTL())
 
 
 ;//tl END
